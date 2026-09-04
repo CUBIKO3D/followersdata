@@ -4,7 +4,7 @@ on:
   schedule:
     # 07:00 AM UTC todos los días
     - cron: '0 7 * * *'
-  workflow_dispatch: # Permite ejecutar el script manualmente desde GitHub para probarlo
+  workflow_dispatch: # Permite ejecutar el script manualmente desde la pestaña Actions
 
 jobs:
   ejecutar-script:
@@ -24,10 +24,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-- name: Ejecutar script de Python
-            env:
-              SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-              SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
-              INSTAGRAM_USER: ${{ secrets.INSTAGRAM_USER }}
-              INSTAGRAM_PASSWORD: ${{ secrets.INSTAGRAM_PASSWORD }}
-            run: python main.py
+      - name: Ejecutar script de Python
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          INSTAGRAM_USER: ${{ secrets.INSTAGRAM_USER }}
+          INSTAGRAM_PASSWORD: ${{ secrets.INSTAGRAM_PASSWORD }}
+        run: python main.py
